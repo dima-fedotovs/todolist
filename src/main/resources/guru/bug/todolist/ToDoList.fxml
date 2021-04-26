@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import guru.bug.todolist.Lane?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <SplitPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="guru.bug.todolist.ToDoListController"
            prefHeight="400.0" prefWidth="600.0" dividerPositions="0.7">
@@ -39,27 +39,35 @@
             <Lane fx:id="doneLane" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
 
         </GridPane>
-        <Button text="ADD" AnchorPane.leftAnchor="8" AnchorPane.bottomAnchor="8" prefWidth="50" prefHeight="50" onAction="#createNewCard"/>
     </AnchorPane>
-    <VBox fx:id="editCardContainer" SplitPane.resizableWithParent="false" spacing="4" disable="true">
-        <padding>
-            <Insets top="4" bottom="4" left="4" right="4"/>
-        </padding>
-        <VBox>
-            <Label labelFor="${editTitle}" text="Title"/>
-            <TextField fx:id="editTitle"/>
+    <AnchorPane SplitPane.resizableWithParent="false" >
+        <VBox fx:id="editCardContainer" spacing="4" disable="true" AnchorPane.topAnchor="0"
+              AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+            <padding>
+                <Insets top="4" bottom="4" left="4" right="4"/>
+            </padding>
+            <VBox>
+                <Label labelFor="${editTitle}" text="Title"/>
+                <TextField fx:id="editTitle"/>
+            </VBox>
+            <VBox>
+                <Label labelFor="${editDescription}" text="Description"/>
+                <TextArea fx:id="editDescription"/>
+            </VBox>
+            <VBox>
+                <Label labelFor="${editDueDate}" text="Due Date"/>
+                <DatePicker fx:id="editDueDate"/>
+            </VBox>
+            <FlowPane hgap="4">
+                <CheckBox fx:id="editUrgent" text="Urgent"/>
+                <CheckBox fx:id="editImportant" text="Important"/>
+            </FlowPane>
         </VBox>
-        <VBox>
-            <Label labelFor="${editDescription}" text="Description"/>
-            <TextArea fx:id="editDescription"/>
+        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+            <padding>
+                <Insets top="4" bottom="4" left="4" right="4"/>
+            </padding>
+            <Button text="Add new" onAction="#createNewCard" />
         </VBox>
-        <VBox>
-            <Label labelFor="${editDueDate}" text="Due Date"/>
-            <DatePicker fx:id="editDueDate"/>
-        </VBox>
-        <FlowPane hgap="4">
-            <CheckBox fx:id="editUrgent" text="Urgent"/>
-            <CheckBox fx:id="editImportant" text="Important"/>
-        </FlowPane>
-    </VBox>
+    </AnchorPane>
 </SplitPane>

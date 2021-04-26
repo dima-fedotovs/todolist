@@ -7,15 +7,15 @@
          type="guru.bug.todolist.ToDoCard">
     <graphic>
         <VBox>
-            <Label fx:id="idText"/>
-            <Label fx:id="titleText"/>
-            <AnchorPane>
+            <HBox spacing="4">
+                <Label fx:id="idText"/>
+                <Label fx:id="titleText"/>
+            </HBox>
+            <HBox spacing="2">
+                <Label fx:id="urgentIcon" text="U"/>
+                <Label fx:id="importantIcon" text="I"/>
                 <Label fx:id="dueDateText" AnchorPane.leftAnchor="0"/>
-                <HBox AnchorPane.rightAnchor="0">
-                    <Label fx:id="urgentIcon" text="U"/>
-                    <Label fx:id="importantIcon" text="I"/>
-                </HBox>
-            </AnchorPane>
+            </HBox>
         </VBox>
     </graphic>
 </fx:root>

@@ -65,5 +65,6 @@ public class ToDoListController implements Initializable {
     public void createNewCard() {
         var item = new ToDoItem(storage.getNextId());
         backlogLane.getItems().add(item);
+        backlogLane.getSelectionModel().select(item);
     }
 }
