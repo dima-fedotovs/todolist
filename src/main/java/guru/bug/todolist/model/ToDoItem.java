@@ -1,10 +1,8 @@
-package guru.bug.todolist;
+package guru.bug.todolist.model;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 
 public class ToDoItem {
     private ReadOnlyLongWrapper id = new ReadOnlyLongWrapper(this, "id");
@@ -13,25 +11,10 @@ public class ToDoItem {
     private BooleanProperty urgent = new SimpleBooleanProperty(this, "urgent");
     private BooleanProperty important = new SimpleBooleanProperty(this, "important");
     private ObjectProperty<LocalDate> dueDate = new SimpleObjectProperty<>(this, "dueDate");
-    private ReadOnlyObjectWrapper<ZonedDateTime> createdTime = new ReadOnlyObjectWrapper<>(this, "createdTime");
-    private ReadOnlyObjectWrapper<ZonedDateTime> doneTime = new ReadOnlyObjectWrapper<>(this, "doneTime");
-    private ReadOnlyBooleanWrapper done = new ReadOnlyBooleanWrapper(this, "done");
+    private ObjectProperty<State> state = new SimpleObjectProperty<>(this, "state", State.BACKLOG);
 
     public ToDoItem(long id) {
-        this(id, ZonedDateTime.now());
-    }
-
-    public ToDoItem(long id, ZonedDateTime createdTime) {
         this.id.set(id);
-        this.createdTime.set(createdTime);
-        this.done.bind(Bindings.isNotNull(doneTime));
-    }
-
-    public void markAsDone() {
-        if (done.get()) {
-            return;
-        }
-        doneTime.set(ZonedDateTime.now());
     }
 
     public long getId() {
@@ -102,27 +85,15 @@ public class ToDoItem {
         this.dueDate.set(dueDate);
     }
 
-    public ZonedDateTime getCreatedTime() {
-        return createdTime.get();
+    public State getState() {
+        return state.get();
     }
 
-    public ReadOnlyObjectProperty<ZonedDateTime> createdTimeProperty() {
-        return createdTime.getReadOnlyProperty();
+    public ObjectProperty<State> stateProperty() {
+        return state;
     }
 
-    public ZonedDateTime getDoneTime() {
-        return doneTime.get();
-    }
-
-    public ReadOnlyObjectProperty<ZonedDateTime> doneTimeProperty() {
-        return doneTime.getReadOnlyProperty();
-    }
-
-    public boolean isDone() {
-        return done.get();
-    }
-
-    public ReadOnlyBooleanProperty doneProperty() {
-        return done.getReadOnlyProperty();
+    public void setState(State state) {
+        this.state.set(state);
     }
 }

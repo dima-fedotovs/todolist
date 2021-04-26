@@ -3,12 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<?import guru.bug.todolist.Lane?>
 <SplitPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
            fx:controller="guru.bug.todolist.ToDoListController"
-           prefHeight="400.0" prefWidth="600.0">
-    <AnchorPane>
-        <GridPane gridLinesVisible="true" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
+           prefHeight="400.0" prefWidth="600.0" dividerPositions="0.7">
+    <stylesheets>
+        <URL value="@ToDoList.css"/>
+    </stylesheets>
+    <AnchorPane SplitPane.resizableWithParent="true">
+        <GridPane gridLinesVisible="true"
+                  AnchorPane.topAnchor="0"
+                  AnchorPane.leftAnchor="0"
+                  AnchorPane.bottomAnchor="0"
+                  AnchorPane.rightAnchor="0">
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" percentWidth="25"/>
                 <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" percentWidth="25"/>
@@ -19,13 +28,20 @@
                 <RowConstraints vgrow="NEVER"/>
                 <RowConstraints vgrow="ALWAYS"/>
             </rowConstraints>
-            <Label text="Backlog" styleClass="swimlane-title" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <Label text="ToDo" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-            <Label text="Doing" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-            <Label text="Done" alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Backlog" styleClass="swimlane" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="ToDo" styleClass="swimlane" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Doing" styleClass="swimlane" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <Label text="Done" styleClass="swimlane" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Lane GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Lane GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Lane GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <Lane GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
         </GridPane>
     </AnchorPane>
-    <AnchorPane>
+    <AnchorPane SplitPane.resizableWithParent="false">
 
     </AnchorPane>
 </SplitPane>

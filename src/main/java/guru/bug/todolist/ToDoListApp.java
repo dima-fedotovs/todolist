@@ -10,14 +10,8 @@ import java.net.URL;
 import java.util.Objects;
 
 public class ToDoListApp extends Application {
-    private static final String URL = "jdbc:h2:~/test;AUTO_SERVER=TRUE";
     public static void main(String[] args) {
-        initDB();
         Application.launch(args);
-    }
-
-    private static void initDB() {
-
     }
 
     @Override
