@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import guru.bug.todolist.ToDoCard?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         type="guru.bug.todolist.ToDoCard">
+    <graphic>
+        <VBox>
+            <Label fx:id="idText"/>
+            <Label fx:id="titleText"/>
+            <AnchorPane>
+                <Label fx:id="dueDateText" AnchorPane.leftAnchor="0"/>
+                <HBox AnchorPane.rightAnchor="0">
+                    <Label fx:id="urgentIcon" text="U"/>
+                    <Label fx:id="importantIcon" text="I"/>
+                </HBox>
+            </AnchorPane>
+        </VBox>
+    </graphic>
+</fx:root>
