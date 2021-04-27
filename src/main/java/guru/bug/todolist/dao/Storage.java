@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Storage {
     static Storage newInstance() {
-        return new MemoryStorage();
+        return new DBStorage();
     }
 
     void init();
