@@ -39,6 +39,10 @@ public class ToDoCard extends ListCell<ToDoItem> {
         dueDateText.textProperty().unbind();
         urgentIcon.visibleProperty().unbind();
         importantIcon.visibleProperty().unbind();
+
+        idText.setText(null);
+        titleText.setText(null);
+        dueDateText.setText(null);
         urgentIcon.setVisible(false);
         importantIcon.setVisible(false);
 

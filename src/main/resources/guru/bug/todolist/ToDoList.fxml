@@ -46,6 +46,7 @@
             <padding>
                 <Insets top="4" bottom="4" left="4" right="4"/>
             </padding>
+            <Label fx:id="editId"/>
             <VBox>
                 <Label labelFor="${editTitle}" text="Title"/>
                 <TextField fx:id="editTitle"/>
