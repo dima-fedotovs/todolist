@@ -1,13 +1,14 @@
 package guru.bug.todolist;
 
-import guru.bug.todolist.dao.MemoryStorage;
 import guru.bug.todolist.dao.Storage;
+import guru.bug.todolist.model.State;
 import guru.bug.todolist.model.ToDoItem;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -90,6 +91,7 @@ public class ToDoListController implements Initializable {
 
     public void createNewCard() {
         var item = new ToDoItem(storage.nextId());
+        item.setState(State.BACKLOG);
         storage.insert(item);
         backlogLane.getItems().add(item);
         backlogLane.getSelectionModel().select(item);

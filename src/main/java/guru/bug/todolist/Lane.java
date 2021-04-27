@@ -1,9 +1,12 @@
 package guru.bug.todolist;
 
+import guru.bug.todolist.model.State;
 import guru.bug.todolist.model.ToDoItem;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.input.ClipboardContent;
@@ -13,6 +16,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Lane extends ListView<ToDoItem> {
+    private final ObjectProperty<State> state = new SimpleObjectProperty<>(this, "state");
     private final ReadOnlyObjectWrapper<ToDoItem> selected = new ReadOnlyObjectWrapper<>(this, "selected");
 
     public Lane() {
@@ -51,6 +55,7 @@ public class Lane extends ListView<ToDoItem> {
             var db = e.getDragboard();
             if (db.hasString() && e.getGestureSource() != e.getGestureTarget() && e.getGestureSource() instanceof Lane lane && lane.selected.get() != null) {
                 var i = lane.selected.get();
+                i.setState(getState());
                 lane.getItems().remove(i);
                 getItems().add(i);
                 getSelectionModel().select(i);
@@ -61,6 +66,18 @@ public class Lane extends ListView<ToDoItem> {
             }
             e.consume();
         });
+    }
+
+    public State getState() {
+        return state.get();
+    }
+
+    public void setState(State state) {
+        this.state.set(state);
+    }
+
+    public ObjectProperty<State> stateProperty() {
+        return state;
     }
 
     public ToDoItem getSelected() {

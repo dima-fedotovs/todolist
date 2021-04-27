@@ -33,10 +33,10 @@
             <Label text="Doing" styleClass="swimlane" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
             <Label text="Done" styleClass="swimlane" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
 
-            <Lane fx:id="backlogLane" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Lane fx:id="todoLane" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Lane fx:id="doingLane" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-            <Lane fx:id="doneLane" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+            <Lane fx:id="backlogLane" GridPane.columnIndex="0" GridPane.rowIndex="1" state="BACKLOG"/>
+            <Lane fx:id="todoLane" GridPane.columnIndex="1" GridPane.rowIndex="1" state="TODO"/>
+            <Lane fx:id="doingLane" GridPane.columnIndex="2" GridPane.rowIndex="1" state="DOING"/>
+            <Lane fx:id="doneLane" GridPane.columnIndex="3" GridPane.rowIndex="1" state="DONE"/>
 
         </GridPane>
     </AnchorPane>
