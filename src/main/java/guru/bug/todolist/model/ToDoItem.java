@@ -2,6 +2,7 @@ package guru.bug.todolist.model;
 
 import javafx.beans.property.*;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class ToDoItem {
@@ -15,6 +16,18 @@ public class ToDoItem {
 
     public ToDoItem(long id) {
         this.id.set(id);
+    }
+
+    public ToDoItem(long id, State state, String title, boolean urgent, boolean important, Date dueDate, String description) {
+        this.id.set(id);
+        this.title.set(title);
+        this.description.set(description);
+        this.urgent.set(urgent);
+        this.important.set(important);
+        if (dueDate != null) {
+            this.dueDate.set(dueDate.toLocalDate());
+        }
+        this.state.set(state);
     }
 
     public ToDoItem(long id, State state, String title, boolean urgent, boolean important, LocalDate dueDate, String description) {
