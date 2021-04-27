@@ -8,11 +8,12 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ToDoListController implements Initializable {
+    private final ObjectProperty<ToDoItem> selectedItem = new SimpleObjectProperty<>();
+    private final Storage storage = Storage.newInstance();
     public Lane backlogLane;
     public Lane todoLane;
     public Lane doingLane;
@@ -24,17 +25,24 @@ public class ToDoListController implements Initializable {
     public CheckBox editImportant;
     public VBox editCardContainer;
     public Label editId;
-    private Storage storage;
-    private final ObjectProperty<ToDoItem> selectedItem = new SimpleObjectProperty<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupLanes(backlogLane, todoLane, doingLane, doneLane);
-
         selectedItem.addListener((o, ov, nv) -> selectionChanged(ov, nv));
-
-        this.storage = new MemoryStorage();
         storage.init();
+        loadData();
+    }
+
+    private void loadData() {
+        for (var i : storage.selectAll()) {
+            switch (i.getState()) {
+                case BACKLOG -> backlogLane.getItems().add(i);
+                case TODO -> todoLane.getItems().add(i);
+                case DOING -> doingLane.getItems().add(i);
+                case DONE -> doneLane.getItems().add(i);
+            }
+        }
     }
 
     private void setupLanes(Lane... lanes) {
@@ -62,6 +70,7 @@ public class ToDoListController implements Initializable {
             oldValue.setUrgent(editUrgent.isSelected());
             oldValue.importantProperty().unbind();
             oldValue.setImportant(editImportant.isSelected());
+            storage.update(oldValue);
         }
         if (newValue != null) {
             editId.setText("#" + newValue.getId());
@@ -80,7 +89,8 @@ public class ToDoListController implements Initializable {
     }
 
     public void createNewCard() {
-        var item = new ToDoItem(storage.getNextId());
+        var item = new ToDoItem(storage.nextId());
+        storage.insert(item);
         backlogLane.getItems().add(item);
         backlogLane.getSelectionModel().select(item);
         editTitle.requestFocus();

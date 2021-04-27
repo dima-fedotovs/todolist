@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Lane extends ListView<ToDoItem> {
-    private ReadOnlyObjectWrapper<ToDoItem> selected = new ReadOnlyObjectWrapper<>(this, "selected");
-
+    private final ReadOnlyObjectWrapper<ToDoItem> selected = new ReadOnlyObjectWrapper<>(this, "selected");
 
     public Lane() {
         var url = Lane.class.getResource("Lane.fxml");
@@ -32,7 +31,7 @@ public class Lane extends ListView<ToDoItem> {
         selected.bind(Bindings.select(selectionModelProperty(), "selectedItem"));
         setOnDragDetected(e -> {
             var s = selected.get();
-            if (selected != null) {
+            if (s != null) {
                 var db = startDragAndDrop(TransferMode.MOVE);
                 var cc = new ClipboardContent();
                 cc.putString(s.getTitle() + "\n" + s.getDescription());

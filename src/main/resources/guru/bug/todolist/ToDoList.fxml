@@ -40,7 +40,7 @@
 
         </GridPane>
     </AnchorPane>
-    <AnchorPane SplitPane.resizableWithParent="false" >
+    <AnchorPane SplitPane.resizableWithParent="false">
         <VBox fx:id="editCardContainer" spacing="4" disable="true" AnchorPane.topAnchor="0"
               AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
             <padding>
@@ -53,7 +53,7 @@
             </VBox>
             <VBox>
                 <Label labelFor="${editDescription}" text="Description"/>
-                <TextArea fx:id="editDescription"/>
+                <TextArea fx:id="editDescription" wrapText="true"/>
             </VBox>
             <VBox>
                 <Label labelFor="${editDueDate}" text="Due Date"/>
@@ -68,7 +68,7 @@
             <padding>
                 <Insets top="4" bottom="4" left="4" right="4"/>
             </padding>
-            <Button text="Add new" onAction="#createNewCard" />
+            <Button text="Add new" onAction="#createNewCard"/>
         </VBox>
     </AnchorPane>
 </SplitPane>
